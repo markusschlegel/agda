@@ -345,6 +345,7 @@ errorString = \case
   OptionError{}                            -> "OptionError"
   UnquoteFailed err                        -> "Unquote." ++ unquoteErrorString err
   SyntaxError{}                            -> "SyntaxError"
+  OpenEverythingInRecordWhere{}            -> "OpenEverythingInRecordWhere"
 
 ghcBackendErrorString :: GHCBackendError -> String
 ghcBackendErrorString = \case
@@ -1700,6 +1701,8 @@ instance PrettyTCM TypeError where
       , pwords $ "is not supported."
       ]
 
+    OpenEverythingInRecordWhere -> fsep $
+      pwords "'open' in 'record where' expressions must provide a 'using' clause"
     CustomBackendError backend err -> (text backend <> ":") <?> pure err
     GHCBackendError err -> prettyTCM err
 

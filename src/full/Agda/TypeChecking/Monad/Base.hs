@@ -4964,6 +4964,7 @@ data TypeError
         | NotValidBeforeField NiceDeclaration
         | NothingAppliedToHiddenArg C.Expr
         | NothingAppliedToInstanceArg C.Expr
+        | OpenEverythingInRecordWhere
     -- Pattern synonym errors
         | AsPatternInPatternSynonym
         | DotPatternInPatternSynonym
